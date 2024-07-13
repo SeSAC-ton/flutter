@@ -17,9 +17,16 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('새싹톤'),
+          title: Text('새싹톤', style: TextStyles.a.copyWith()),
         ),
       ),
     );
   }
+}
+
+abstract class TextStyles {
+  static const TextStyle a = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.bold,
+  );
 }
