@@ -8,7 +8,6 @@ class InputField extends StatelessWidget {
   final String label;
   final String placeHolder;
   final double topPadding;
-  final TextEditingController controller;
 
   const InputField({
     super.key,
@@ -16,7 +15,6 @@ class InputField extends StatelessWidget {
     required this.placeHolder,
     required this.onChanged,
     required this.topPadding,
-    required this.controller,
   });
 
   @override
@@ -34,7 +32,6 @@ class InputField extends StatelessWidget {
             height: 5,
           ),
           TextField(
-            controller: controller,
             style: Fonts.smallerTextRegular.copyWith(
               color: ColorStyles.black,
             ),

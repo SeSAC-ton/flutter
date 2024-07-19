@@ -1,3 +1,3 @@
-const String base_url = 'http://api.sesac.sunghunaaa.store';
+const String baseUrl = 'http://api.sesac.sunghunaaa.store';
 
-int member_idx = -1;
+int memberIdx = -1;

@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 class MemberDataSourceImpl implements MemberDataSource {
   @override
   Future<Result<void>> loginUser(LoginInfo loginInfo) async {
-    const url = '$base_url/login_v_1_0_0/loginUser';
+    const url = '$baseUrl/login_v_1_0_0/loginUser';
 
     try {
       final response = await http.post(
@@ -25,6 +25,8 @@ class MemberDataSourceImpl implements MemberDataSource {
       }
 
       final result = jsonDecode(response.body);
+      // member_idx 값 넣어주기 필요.
+      print(result);
       return Result.success(result);
     } catch (e) {
       return Result.error(e.toString());
@@ -33,7 +35,7 @@ class MemberDataSourceImpl implements MemberDataSource {
 
   @override
   Future<Result<void>> registerUser(RegisterInfo registerInfo) async {
-    const url = '$base_url/register_v_1_0_0/registerUser';
+    const url = '$baseUrl/register_v_1_0_0/registerUser';
 
     try {
       final response = await http.post(
@@ -61,7 +63,7 @@ class MemberDataSourceImpl implements MemberDataSource {
 
   @override
   Future<Result<void>> checkUserId(String id) async {
-    const url = '$base_url/register_v_1_0_0/checkUserId';
+    const url = '$baseUrl/register_v_1_0_0/checkUserId';
     final json = {'member_id : $id'};
 
     try {

@@ -1,0 +1,1 @@
+const serviceName = '아보카도';
