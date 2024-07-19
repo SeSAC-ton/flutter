@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'package:sesac_ton/presentation/component/worksheet_card_widget.dart';
 import 'package:sesac_ton/util/constant.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
-import 'home_view_model.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,42 +21,50 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '어서오세요! (인사 문구)',
-              style: Fonts.largeTextBold.copyWith(
-                color: ColorStyles.black,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipOval(
+                child: Image.asset(
+                  'assets/mascot.png',
+                  width: 270,
+                  height: 270,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              '오늘은 어제의 나를 위해서 (문구)',
-              style: Fonts.smallerTextRegular.copyWith(
-                color: ColorStyles.grey2,
+              const SizedBox(height: 30),
+              Text(
+                '오늘 하루는 어떘어? [문구]',
+                style: Fonts.largeTextBold.copyWith(
+                  color: ColorStyles.black,
+                ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Consumer<HomeViewModel>(
-              builder: (context, viewModel, child) {
-                final worksheets = viewModel.worksheets;
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: worksheets.length,
-                    itemBuilder: (context, index) {
-                      return WorksheetCardWidget(
-                        worksheetTitle: worksheets[index],
-                        onTap: () {},
-                      );
-                    },
+              const SizedBox(height: 100),
+              InkWell(
+                onTap: () {
+                  context.push('/worksheet');
+                },
+                borderRadius: BorderRadius.circular(50),
+                child: SizedBox(
+                  width: 80,
+                  height: 80,
+                  child: ClipOval(
+                    child: Center(
+                      child: Image.asset(
+                        'assets/chat_icon.png',
+                        width: 270,
+                        height: 270,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
-                );
-              },
-            )
-          ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

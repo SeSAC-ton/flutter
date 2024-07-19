@@ -3,10 +3,10 @@ import 'package:sesac_ton/core/result.dart';
 import 'package:sesac_ton/data/model/worksheet/worksheet_title.dart';
 import 'package:sesac_ton/data/repository/worksheet_repository/worksheet_repository.dart';
 
-class HomeViewModel with ChangeNotifier {
+class WorksheetViewModel with ChangeNotifier {
   final WorksheetRepository _worksheetRepository;
 
-  HomeViewModel(this._worksheetRepository) {
+  WorksheetViewModel(this._worksheetRepository) {
     getWorksheets();
   }
 

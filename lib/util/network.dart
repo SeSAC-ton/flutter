@@ -1,3 +1,3 @@
 const String baseUrl = 'http://api.sesac.sunghunaaa.store';
 
-int memberIdx = -1;
+int memberIdx = 1;

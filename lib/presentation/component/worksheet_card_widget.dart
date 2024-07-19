@@ -28,7 +28,7 @@ class WorksheetCardWidget extends StatelessWidget {
               color: ColorStyles.white,
               borderRadius: BorderRadius.circular(10.0),
               border: Border.all(
-                color: ColorStyles.grey4,
+                color: ColorStyles.primary100,
                 width: 1.0,
               ),
             ),
@@ -37,13 +37,13 @@ class WorksheetCardWidget extends StatelessWidget {
                 Text(
                   worksheetTitle.title,
                   style: const TextStyle(
-                    color: ColorStyles.grey4,
+                    color: ColorStyles.grey1,
                   ),
                 ),
                 const Spacer(),
                 const Icon(
                   Icons.search,
-                  color: ColorStyles.grey4,
+                  color: ColorStyles.primary100,
                 ),
               ],
             )),

@@ -13,6 +13,9 @@ class RegisterViewModel with ChangeNotifier {
   String passwordValue = '';
   String passwordCheckValue = '';
   String nameValue = '';
+  String birthValue = '';
+
+  bool matchPassword = false;
 
   String _registerErrorMessage = '';
   String _checkUserIdErrorMessage = '';
@@ -28,6 +31,7 @@ class RegisterViewModel with ChangeNotifier {
         password: passwordValue,
         passwordCheck: passwordCheckValue,
         name: nameValue,
+        birth: birthValue,
       ),
     );
 
@@ -49,7 +53,20 @@ class RegisterViewModel with ChangeNotifier {
         notifyListeners();
       case Error(:final e):
         _checkUserIdErrorMessage = e;
+        print('checkId : $e');
         notifyListeners();
     }
+  }
+
+  // passwordValue 및 passwordCheckValue 일치 -> true
+  // 항목 모두 값이 있음 -> true
+  // 모두 값이 있으나 불일치 -> false
+  // false를 return하여 UI 표시
+
+  void checkMatchPassword() {
+    matchPassword = passwordValue != passwordCheckValue &&
+        (passwordCheckValue.isNotEmpty &&
+        passwordValue.isNotEmpty);
+    notifyListeners();
   }
 }

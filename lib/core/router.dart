@@ -5,25 +5,19 @@ import 'package:sesac_ton/data/data_source/worksheet_data_source/worksheet_data_
 import 'package:sesac_ton/data/repository/member_repository/member_repository_impl.dart';
 import 'package:sesac_ton/data/repository/worksheet_repository/worksheet_repository_impl.dart';
 import 'package:sesac_ton/presentation/home/home_screen.dart';
-import 'package:sesac_ton/presentation/home/home_view_model.dart';
 import 'package:sesac_ton/presentation/login/login_screen.dart';
 import 'package:sesac_ton/presentation/login/login_view_model.dart';
 import 'package:sesac_ton/presentation/register/register_screen.dart';
 import 'package:sesac_ton/presentation/register/register_view_model.dart';
+import 'package:sesac_ton/presentation/worksheet/worksheet_screen.dart';
+import 'package:sesac_ton/presentation/worksheet/worksheet_view_model.dart';
 
 final router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
       builder: (context, state) {
-        final worksheetDataSource = WorksheetDataSourceImpl();
-        final worksheetRepository =
-        WorksheetRepositoryImpl(worksheetDataSource);
-
-        return ChangeNotifierProvider<HomeViewModel>(
-          create: (context) => HomeViewModel(worksheetRepository),
-          child: const HomeScreen(),
-        );
+        return const HomeScreen();
       },
     ),
     GoRoute(
@@ -53,13 +47,18 @@ final router = GoRouter(
     GoRoute(
       path: '/home',
       builder: (context, state) {
-        final worksheetDataSource = WorksheetDataSourceImpl();
-        final worksheetRepository =
-            WorksheetRepositoryImpl(worksheetDataSource);
+        return const HomeScreen();
+      },
+    ),
+    GoRoute(
+      path: '/worksheet',
+      builder: (context, state) {
+        final worksheetDatasource = WorksheetDataSourceImpl();
+        final worksheetRepository = WorksheetRepositoryImpl(worksheetDatasource);
 
-        return ChangeNotifierProvider<HomeViewModel>(
-          create: (context) => HomeViewModel(worksheetRepository),
-          child: const HomeScreen(),
+        return ChangeNotifierProvider<WorksheetViewModel>(
+          create: (context) => WorksheetViewModel(worksheetRepository),
+          child: const WorksheetScreen(),
         );
       },
     ),

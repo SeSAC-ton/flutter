@@ -11,6 +11,7 @@ class RegisterInfo with _$RegisterInfo {
     @JsonKey(name: 'member_pw') required String password,
     @JsonKey(name: 'member_pw_confirm') required String passwordCheck,
     @JsonKey(name: 'member_name') required String name,
+    @JsonKey(name: 'member_birth') required String birth,
   }) = _RegisterInfo;
 
   factory RegisterInfo.fromJson(Map<String, Object?> json) =>
