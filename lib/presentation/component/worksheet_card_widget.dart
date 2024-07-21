@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:sesac_ton/data/model/worksheet/worksheet_title.dart';
+import 'package:sesac_ton/data/model/worksheet/worksheet.dart';
 
-import '../../data/model/worksheet/worksheet.dart';
 import '../../ui/color_styles.dart';
 
 class WorksheetCardWidget extends StatelessWidget {
   final void Function() onTap;
-  final WorksheetTitle worksheetTitle;
+  final Worksheet worksheet;
 
   const WorksheetCardWidget({
     super.key,
     required this.onTap,
-    required this.worksheetTitle,
+    required this.worksheet,
   });
 
   @override
@@ -35,15 +34,19 @@ class WorksheetCardWidget extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  worksheetTitle.title,
+                  worksheet.title,
                   style: const TextStyle(
                     color: ColorStyles.grey1,
                   ),
                 ),
                 const Spacer(),
-                const Icon(
-                  Icons.search,
-                  color: ColorStyles.primary100,
+                Center(
+                  child: Image.asset(
+                    'assets/pencil_icon.png',
+                    width: 20, // 아이콘 크기 설정
+                    height: 20,
+                    color: ColorStyles.grey1,
+                  ),
                 ),
               ],
             )),

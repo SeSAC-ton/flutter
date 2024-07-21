@@ -1,9 +1,12 @@
 
-import 'package:sesac_ton/data/model/worksheet/worksheet.dart';
+import 'package:sesac_ton/data/model/worksheet/problem.dart';
 
-import '../../../core/result.dart';
-import '../../model/worksheet/worksheet_title.dart';
+import '../../model/worksheet/explain.dart';
+import '../../model/worksheet/worksheet.dart';
 
 abstract interface class WorksheetDataSource {
-  Future<Result<List<WorksheetTitle>>> getWorksheets();
+  Future<List<Worksheet>> getWorksheets();
+  Future<Explain> getExplain(int id);
+  Future<Problem> getProblem(int id);
+  Future<void> solveProblem(int id, int selectId);
 }

@@ -42,7 +42,7 @@ class _BigButtonState extends State<BigButton> {
         width: double.infinity,
         height: 60,
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
           color: buttonColor,
         ),
         child: Center(

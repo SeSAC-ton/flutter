@@ -4,9 +4,13 @@ import 'package:sesac_ton/data/data_source/member_data_source/member_data_source
 import 'package:sesac_ton/data/data_source/worksheet_data_source/worksheet_data_source_impl.dart';
 import 'package:sesac_ton/data/repository/member_repository/member_repository_impl.dart';
 import 'package:sesac_ton/data/repository/worksheet_repository/worksheet_repository_impl.dart';
+import 'package:sesac_ton/presentation/explain/explain_screen.dart';
+import 'package:sesac_ton/presentation/explain/explain_view_model.dart';
 import 'package:sesac_ton/presentation/home/home_screen.dart';
 import 'package:sesac_ton/presentation/login/login_screen.dart';
 import 'package:sesac_ton/presentation/login/login_view_model.dart';
+import 'package:sesac_ton/presentation/problem/problem_screen.dart';
+import 'package:sesac_ton/presentation/problem/problem_view_model.dart';
 import 'package:sesac_ton/presentation/register/register_screen.dart';
 import 'package:sesac_ton/presentation/register/register_view_model.dart';
 import 'package:sesac_ton/presentation/worksheet/worksheet_screen.dart';
@@ -54,11 +58,42 @@ final router = GoRouter(
       path: '/worksheet',
       builder: (context, state) {
         final worksheetDatasource = WorksheetDataSourceImpl();
-        final worksheetRepository = WorksheetRepositoryImpl(worksheetDatasource);
+        final worksheetRepository =
+            WorksheetRepositoryImpl(worksheetDatasource);
 
         return ChangeNotifierProvider<WorksheetViewModel>(
           create: (context) => WorksheetViewModel(worksheetRepository),
           child: const WorksheetScreen(),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/explain/:id',
+      builder: (context, state) {
+        final String id = state.pathParameters['id']!;
+        final worksheetDatasource = WorksheetDataSourceImpl();
+        final worksheetRepository =
+            WorksheetRepositoryImpl(worksheetDatasource);
+
+        return ChangeNotifierProvider<ExplainViewModel>(
+          create: (context) =>
+              ExplainViewModel(worksheetRepository, int.parse(id)),
+          child: const ExplainScreen(),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/problem/:id',
+      builder: (context, state) {
+        final String id = state.pathParameters['id']!;
+        final worksheetDatasource = WorksheetDataSourceImpl();
+        final worksheetRepository =
+            WorksheetRepositoryImpl(worksheetDatasource);
+
+        return ChangeNotifierProvider<ProblemViewModel>(
+          create: (context) =>
+              ProblemViewModel(worksheetRepository, int.parse(id)),
+          child: const ProblemScreen(),
         );
       },
     ),

@@ -15,12 +15,11 @@ class WorksheetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            serviceName,
-            style: Fonts.largeTextBold.copyWith(
-              color: ColorStyles.black,
-            ),
+        centerTitle: true,
+        title: Text(
+          serviceName,
+          style: Fonts.largeTextBold.copyWith(
+            color: ColorStyles.black,
           ),
         ),
       ),
@@ -43,22 +42,51 @@ class WorksheetScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Consumer<WorksheetViewModel>(
-              builder: (context, viewModel, child) {
-                final worksheets = viewModel.worksheets;
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: worksheets.length,
-                    itemBuilder: (context, index) {
-                      return WorksheetCardWidget(
-                        worksheetTitle: worksheets[index],
-                        onTap: () {},
-                      );
-                    },
-                  ),
-                );
-              },
-            )
+            ...categoryList.map(
+              (String category) => Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      category,
+                      style: Fonts.mediumTextBold.copyWith(
+                        color: ColorStyles.black,
+                      ),
+                    ),
+                    Expanded(
+                      child: Consumer<WorksheetViewModel>(
+                        builder: (context, viewModel, child) {
+                          final worksheets = viewModel.worksheets
+                              .where(
+                                  (worksheet) => worksheet.category == category)
+                              .toList();
+                          return (viewModel.isLoading)
+                              ? const Center(
+                                  child: SizedBox(
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 3,
+                                    ),
+                                  ),
+                                )
+                              : ListView.builder(
+                                  itemCount: worksheets.length,
+                                  itemBuilder: (context, index) {
+                                    return WorksheetCardWidget(
+                                      worksheet: worksheets[index],
+                                      onTap: () {
+                                        context.push(
+                                            '/explain/${worksheets[index].id}');
+                                      },
+                                    );
+                                  },
+                                );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
