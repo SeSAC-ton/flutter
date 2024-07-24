@@ -34,7 +34,7 @@ class _ProblemScreenState extends State<ProblemScreen> {
         children: [
           Positioned(
             child: ProblemView(
-              onTap: () {
+              workAnimation: () {
                 setState(() {
                   emojiFireWork.addFireworkWidget();
                 });

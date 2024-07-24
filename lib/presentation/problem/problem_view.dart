@@ -11,9 +11,9 @@ import '../component/option_button.dart';
 import '../component/title_widget.dart';
 
 class ProblemView extends StatelessWidget {
-  final void Function() onTap;
+  final void Function() workAnimation;
 
-  const ProblemView({super.key, required this.onTap});
+  const ProblemView({super.key, required this.workAnimation});
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +45,13 @@ class ProblemView extends StatelessWidget {
                       (Option option) => OptionButton(
                         option: option,
                         onTap: () {
-                          viewModel.solveProblem(id, option.id);
-                          if (option.isAnswer) {
-                            onTap();
+                          if (!viewModel.isSolved) {
+                            viewModel.solveProblem(id, option.id);
+                            if (option.isAnswer) {
+                              workAnimation();
+                            }
                           }
-                        },
+                        }, isSolved: viewModel.isSolved,
                       ),
                     ),
                     if (viewModel.errorMessage.isNotEmpty)

@@ -11,6 +11,8 @@ import 'package:sesac_ton/presentation/login/login_screen.dart';
 import 'package:sesac_ton/presentation/login/login_view_model.dart';
 import 'package:sesac_ton/presentation/problem/problem_screen.dart';
 import 'package:sesac_ton/presentation/problem/problem_view_model.dart';
+import 'package:sesac_ton/presentation/profile/profile_screen.dart';
+import 'package:sesac_ton/presentation/profile/profile_view_model.dart';
 import 'package:sesac_ton/presentation/register/register_screen.dart';
 import 'package:sesac_ton/presentation/register/register_view_model.dart';
 import 'package:sesac_ton/presentation/worksheet/worksheet_screen.dart';
@@ -21,9 +23,22 @@ final router = GoRouter(
     GoRoute(
       path: '/',
       builder: (context, state) {
-        return const HomeScreen();
+        final worksheetDatasource = WorksheetDataSourceImpl();
+        final worksheetRepository =
+        WorksheetRepositoryImpl(worksheetDatasource);
+
+        return ChangeNotifierProvider<ProfileViewModel>(
+          create: (context) => ProfileViewModel(worksheetRepository),
+          child: const ProfileScreen(),
+        );
       },
     ),
+    // GoRoute(
+    //   path: '/',
+    //   builder: (context, state) {
+    //     return const HomeScreen();
+    //   },
+    // ),
     GoRoute(
       path: '/login',
       builder: (context, state) {
@@ -94,6 +109,19 @@ final router = GoRouter(
           create: (context) =>
               ProblemViewModel(worksheetRepository, int.parse(id)),
           child: const ProblemScreen(),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/profile',
+      builder: (context, state) {
+        final worksheetDatasource = WorksheetDataSourceImpl();
+        final worksheetRepository =
+        WorksheetRepositoryImpl(worksheetDatasource);
+
+        return ChangeNotifierProvider<ProfileViewModel>(
+          create: (context) => ProfileViewModel(worksheetRepository),
+          child: const ProfileScreen(),
         );
       },
     ),

@@ -117,13 +117,17 @@ class _FireworkWidgetState extends State<FireworkWidget>
       }
     });
 
-    startAnimation();
-  }
-
-  void startAnimation() {
     emojiAnimationShootController.forward(from: 0.0);
     emojiAnimationFloatController.forward(from: 0.0);
     emojiAnimationLifeTimeController.forward(from: 0.0);
+  }
+
+  @override
+  void dispose() {
+    emojiAnimationShootController.dispose();
+    emojiAnimationFloatController.dispose();
+    emojiAnimationLifeTimeController.dispose();
+    super.dispose();
   }
 
   @override

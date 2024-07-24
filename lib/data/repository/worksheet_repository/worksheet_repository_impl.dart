@@ -2,6 +2,7 @@ import 'package:sesac_ton/core/result.dart';
 import 'package:sesac_ton/data/data_source/worksheet_data_source/worksheet_data_source.dart';
 import 'package:sesac_ton/data/model/worksheet/explain.dart';
 import 'package:sesac_ton/data/model/worksheet/problem.dart';
+import 'package:sesac_ton/data/model/worksheet/solve_problem.dart';
 import 'package:sesac_ton/data/model/worksheet/worksheet.dart';
 
 import 'worksheet_repository.dart';
@@ -50,6 +51,16 @@ class WorksheetRepositoryImpl implements WorksheetRepository {
       return Result.success(result);
     } catch (e) {
       print(e);
+      return Result.error(e.toString());
+    }
+  }
+
+  @override
+  Future<Result<List<SolveProblem>>> getSolveProblems() async {
+    try {
+      final problems = await worksheetDataSource.getSolveProblems();
+      return Result.success(problems);
+    } catch (e) {
       return Result.error(e.toString());
     }
   }

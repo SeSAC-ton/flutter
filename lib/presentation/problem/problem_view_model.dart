@@ -10,14 +10,17 @@ class ProblemViewModel with ChangeNotifier {
 
   ProblemViewModel(this._worksheetRepository, this.id) {
     getProblem(id);
+    _isSolved = false;
   }
 
+  bool _isSolved = false;
   bool _isLoading = true;
   String _errorMessage = '';
   Problem explain =
       const Problem(title: 'title', content: 'content', options: []);
 
   bool get isLoading => _isLoading;
+  bool get isSolved => _isSolved;
 
   String get errorMessage => _errorMessage;
 
@@ -41,10 +44,12 @@ class ProblemViewModel with ChangeNotifier {
   }
 
   Future<void> solveProblem(int id, int selectId) async {
+    print('사용자가 누른 선지의 id : $selectId');
     final result = await _worksheetRepository.solveProblem(id, selectId);
     switch (result) {
       case Success(:final data):
         _errorMessage = '';
+        _isSolved = true;
         notifyListeners();
       case Error(:final e):
         _errorMessage = 'post solve Problem failed: $e';
