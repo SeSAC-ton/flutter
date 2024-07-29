@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sesac_ton/data/model/worksheet/worksheet.dart';
 
-import '../../ui/color_styles.dart';
+import '../../../ui/color_styles.dart';
 
-class WorksheetCardWidget extends StatelessWidget {
+class WorksheetTitleWidget extends StatelessWidget {
   final void Function() onTap;
   final Worksheet worksheet;
 
-  const WorksheetCardWidget({
+  const WorksheetTitleWidget({
     super.key,
     required this.onTap,
     required this.worksheet,

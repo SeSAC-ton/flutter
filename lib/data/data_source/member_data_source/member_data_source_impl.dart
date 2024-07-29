@@ -86,4 +86,27 @@ class MemberDataSourceImpl implements MemberDataSource {
       return Result.error(e.toString());
     }
   }
+
+  @override
+  Future<Result<String>> getUserName() async {
+    const url = '$baseUrl/name_v_1_0_0/getUserName';
+    try {
+      final response = await http.get(
+        Uri.parse(url).replace(
+          queryParameters: {
+            'memberId': '$memberIdx',
+          },
+        ),
+      );
+
+      if (response.statusCode != 200) {
+        throw Exception(jsonDecode(response.body)['code_msg']);
+      }
+
+      final json = jsonDecode(response.body);
+      return Result.success(json['name']);
+    } catch (e) {
+      throw Exception('datasource error');
+    }
+  }
 }

@@ -4,7 +4,7 @@ import 'package:sesac_ton/presentation/problem/problem_view.dart';
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
 import '../../util/constant.dart';
-import '../component/animation/emoji_widget.dart';
+import 'animation/emoji_widget.dart';
 
 class ProblemScreen extends StatefulWidget {
   const ProblemScreen({super.key});
@@ -23,7 +23,7 @@ class _ProblemScreenState extends State<ProblemScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          serviceName,
+          '문제 풀기',
           style: Fonts.largeTextBold.copyWith(
             color: ColorStyles.black,
           ),

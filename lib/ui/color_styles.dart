@@ -9,11 +9,19 @@ abstract class ColorStyles {
   static const Color grey4 = Color(0xFFD9D9D9);
   static const Color white = Color(0xFFFFFFFF);
 
-  static const Color primary100 = Color(0xFF129575);
-  static const Color primary80 = Color(0xFF71B1A1);
-  static const Color primary60 = Color(0xFFAFD3CA);
-  static const Color primary40 = Color(0xFFDBEBE7);
-  static const Color primary20 = Color(0xFFF6FAF9);
+  // static const Color primary100 = Color(0xFF129575);
+  // static const Color primary80 = Color(0xFF71B1A1);
+  // static const Color primary60 = Color(0xFFAFD3CA);
+  // static const Color primary40 = Color(0xFFDBEBE7);
+  // static const Color primary20 = Color(0xFFF6FAF9);
+
+  static const Color primary100 = Color(0xFF52C3FF);
+  static const Color primary80 = Color(0xFFEFF9FF);
+  static const Color primary60 = Color(0xFF9EDBFF);
+
+  static const Color second = Color(0xFFF9AE2B);
+  static const Color third = Color(0xFF7383C0);
+  static const Color fourth = Color(0xFF54AD67);
 
   static const Color secondary100 = Color(0xFFFF9C00);
   static const Color secondary80 = Color(0xFFFFA61A);

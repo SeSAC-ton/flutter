@@ -33,7 +33,7 @@ class RegisterScreen extends StatelessWidget {
                   // 이름
                   InputField(
                     label: '이름',
-                    placeHolder: '이름 입력해주세요.',
+                    placeHolder: '이름을 입력해주세요.',
                     onChanged: (String text) {
                       viewModel.nameValue = text;
                     },
@@ -47,7 +47,7 @@ class RegisterScreen extends StatelessWidget {
                   // 아이디
                   InputField(
                     label: '아이디',
-                    placeHolder: '아이디를 입력해주세요.',
+                    placeHolder: '아이디를 입력해주세요. (영어와 숫자만)',
                     keyboardType: TextInputType.visiblePassword,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
@@ -100,8 +100,8 @@ class RegisterScreen extends StatelessWidget {
 
                   // 생년 월일
                   InputField(
-                    label: '생년 월일 (ex_991231)',
-                    placeHolder: '991231',
+                    label: '생년 월일',
+                    placeHolder: 'ex_991231',
                     onChanged: (String text) {
                       viewModel.birthValue = text;
                     },

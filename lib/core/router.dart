@@ -1,12 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:sesac_ton/data/data_source/chat_data_source/chat_data_source_impl.dart';
 import 'package:sesac_ton/data/data_source/member_data_source/member_data_source_impl.dart';
 import 'package:sesac_ton/data/data_source/worksheet_data_source/worksheet_data_source_impl.dart';
+import 'package:sesac_ton/data/repository/chat_repository/chat_repository_impl.dart';
 import 'package:sesac_ton/data/repository/member_repository/member_repository_impl.dart';
 import 'package:sesac_ton/data/repository/worksheet_repository/worksheet_repository_impl.dart';
+import 'package:sesac_ton/presentation/chat/chat_screen.dart';
+import 'package:sesac_ton/presentation/chat/chat_view_model.dart';
 import 'package:sesac_ton/presentation/explain/explain_screen.dart';
 import 'package:sesac_ton/presentation/explain/explain_view_model.dart';
 import 'package:sesac_ton/presentation/home/home_screen.dart';
+import 'package:sesac_ton/presentation/home/home_view_model.dart';
 import 'package:sesac_ton/presentation/login/login_screen.dart';
 import 'package:sesac_ton/presentation/login/login_view_model.dart';
 import 'package:sesac_ton/presentation/problem/problem_screen.dart';
@@ -23,22 +29,16 @@ final router = GoRouter(
     GoRoute(
       path: '/',
       builder: (context, state) {
-        final worksheetDatasource = WorksheetDataSourceImpl();
-        final worksheetRepository =
-        WorksheetRepositoryImpl(worksheetDatasource);
+        final chatDataSource = ChatDataSourceImpl();
+        final chatRepository =
+        ChatRepositoryImpl(chatDataSource);
 
-        return ChangeNotifierProvider<ProfileViewModel>(
-          create: (context) => ProfileViewModel(worksheetRepository),
-          child: const ProfileScreen(),
+        return ChangeNotifierProvider<ChatViewModel>(
+          create: (context) => ChatViewModel(chatRepository),
+          child: const ChatScreen(),
         );
       },
     ),
-    // GoRoute(
-    //   path: '/',
-    //   builder: (context, state) {
-    //     return const HomeScreen();
-    //   },
-    // ),
     GoRoute(
       path: '/login',
       builder: (context, state) {
@@ -66,7 +66,13 @@ final router = GoRouter(
     GoRoute(
       path: '/home',
       builder: (context, state) {
-        return const HomeScreen();
+        final memberDataSource = MemberDataSourceImpl();
+        final memberRepository = MemberRepositoryImpl(memberDataSource);
+
+        return ChangeNotifierProvider<HomeViewModel>(
+          create: (context) => HomeViewModel(memberRepository),
+          child: const HomeScreen(),
+        );
       },
     ),
     GoRoute(
@@ -122,6 +128,19 @@ final router = GoRouter(
         return ChangeNotifierProvider<ProfileViewModel>(
           create: (context) => ProfileViewModel(worksheetRepository),
           child: const ProfileScreen(),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/chat',
+      builder: (context, state) {
+        final chatDataSource = ChatDataSourceImpl();
+        final chatRepository =
+        ChatRepositoryImpl(chatDataSource);
+
+        return ChangeNotifierProvider<ChatViewModel>(
+          create: (context) => ChatViewModel(chatRepository),
+          child: const ChatScreen(),
         );
       },
     ),

@@ -18,18 +18,18 @@ class TitleWidget extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       decoration: BoxDecoration(
-        color: ColorStyles.primary100,
+        color: ColorStyles.white,
         borderRadius: BorderRadius.circular(10.0),
         border: Border.all(
-          color: ColorStyles.primary100,
+          color: ColorStyles.white,
           width: 1.0,
         ),
       ),
       child: Center(
         child: Text(
           title,
-          style: Fonts.smallTextRegular.copyWith(
-            color: ColorStyles.white,
+          style: Fonts.smallTextBold.copyWith(
+            color: ColorStyles.black,
           ),
         ),
       ),

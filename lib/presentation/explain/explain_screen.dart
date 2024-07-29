@@ -26,7 +26,7 @@ class ExplainScreen extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          serviceName,
+          '문제 설명',
           style: Fonts.largeTextBold.copyWith(
             color: ColorStyles.black,
           ),

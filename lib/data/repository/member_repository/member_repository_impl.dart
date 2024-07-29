@@ -18,4 +18,7 @@ class MemberRepositoryImpl implements MemberRepository {
 
   @override
   Future<Result<void>> checkUserId(String id) => memberDataSource.checkUserId(id);
+
+  @override
+  Future<Result<String>> getUserName() => memberDataSource.getUserName();
 }

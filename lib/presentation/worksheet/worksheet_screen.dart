@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'package:sesac_ton/presentation/component/worksheet_card_widget.dart';
-import 'package:sesac_ton/util/constant.dart';
+import 'package:sesac_ton/presentation/worksheet/category_button_view.dart';
+import 'package:sesac_ton/presentation/worksheet/worksheet_card_view.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
-import 'worksheet_view_model.dart';
+import '../component/input_field.dart';
 
 class WorksheetScreen extends StatelessWidget {
   const WorksheetScreen({super.key});
@@ -15,9 +13,18 @@ class WorksheetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        actions: [
+          ClipOval(
+            child: Image.asset(
+              'assets/chat_icon.png',
+              width: 48,
+              height: 48,
+            ),
+          ),
+          const SizedBox(width: 10)
+        ],
         title: Text(
-          serviceName,
+          '반가워요 [사용자]님 👋',
           style: Fonts.largeTextBold.copyWith(
             color: ColorStyles.black,
           ),
@@ -28,65 +35,23 @@ class WorksheetScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // AI 질문 던지기
+            InputField(
+              placeHolder: '이름을 입력해주세요.',
+              onChanged: (String text) {},
+              maxLength: 15,
+              topPadding: 30,
+              icon: const Icon(Icons.search),
+            ),
+            const SizedBox(height: 20),
             Text(
-              '어서오세요! (인사 문구)',
+              '카테고리',
               style: Fonts.largeTextBold.copyWith(
                 color: ColorStyles.black,
               ),
             ),
-            const SizedBox(height: 10),
-            Text(
-              '오늘은 어제의 나를 위해서 (문구)',
-              style: Fonts.smallerTextRegular.copyWith(
-                color: ColorStyles.grey1,
-              ),
-            ),
-            const SizedBox(height: 10),
-            ...categoryList.map(
-              (String category) => Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      category,
-                      style: Fonts.mediumTextBold.copyWith(
-                        color: ColorStyles.black,
-                      ),
-                    ),
-                    Expanded(
-                      child: Consumer<WorksheetViewModel>(
-                        builder: (context, viewModel, child) {
-                          final worksheets = viewModel.worksheets
-                              .where(
-                                  (worksheet) => worksheet.category == category)
-                              .toList();
-                          return (viewModel.isLoading)
-                              ? const Center(
-                                  child: SizedBox(
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 3,
-                                    ),
-                                  ),
-                                )
-                              : ListView.builder(
-                                  itemCount: worksheets.length,
-                                  itemBuilder: (context, index) {
-                                    return WorksheetCardWidget(
-                                      worksheet: worksheets[index],
-                                      onTap: () {
-                                        context.push(
-                                            '/explain/${worksheets[index].id}');
-                                      },
-                                    );
-                                  },
-                                );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            const CategoryButtonView(),
+            const WorksheetCardView()
           ],
         ),
       ),

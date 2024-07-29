@@ -12,7 +12,7 @@ import '../../ui/text_styles.dart';
 import '../../util/constant.dart';
 import '../component/big_button.dart';
 import '../component/input_field.dart';
-import '../component/worksheet_card_widget.dart';
+import 'component/worksheet_card_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -59,11 +59,12 @@ class ProfileScreen extends StatelessWidget {
                 itemCount: solveProblems.length,
                 itemBuilder: (context, index) {
                   final solveProblem = solveProblems[index];
-                  return WorksheetCardWidget(
+                  return WorksheetTitleWidget(
                     worksheet: Worksheet(
                       id: solveProblem.solvedWorksheetId.toString(),
                       category: '',
                       title: solveProblem.solvedWorksheetTitle,
+                      imageUrl: '',
                     ),
                     onTap: () {},
                   );

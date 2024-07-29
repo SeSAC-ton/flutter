@@ -16,7 +16,6 @@ class WorksheetRepositoryImpl implements WorksheetRepository {
   Future<Result<List<Worksheet>>> getWorksheets() async {
     try {
       final worksheets = await worksheetDataSource.getWorksheets();
-      print('repo: $worksheets');
       return Result.success(worksheets);
     } catch (e) {
       return Result.error(e.toString());

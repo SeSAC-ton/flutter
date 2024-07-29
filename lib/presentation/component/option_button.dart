@@ -21,14 +21,14 @@ class OptionButton extends StatefulWidget {
 }
 
 class _OptionButtonState extends State<OptionButton> {
-  Color buttonColor = ColorStyles.primary80;
+  Color buttonColor = ColorStyles.grey2;
 
   @override
   Widget build(BuildContext context) {
     if (widget.isSolved) {
       buttonColor = widget.option.isAnswer
-          ? ColorStyles.primary80
-          : ColorStyles.secondary100;
+          ? ColorStyles.primary60
+          : ColorStyles.warningRed;
     }
     final Widget icon =
     (widget.isSolved && widget.option.isAnswer)

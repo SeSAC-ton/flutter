@@ -40,29 +40,17 @@ class _BigButtonState extends State<BigButton> {
       },
       child: Container(
         width: double.infinity,
-        height: 60,
+        height: 55,
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
+          borderRadius: const BorderRadius.all(Radius.circular(30)),
           color: buttonColor,
         ),
         child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Text Style/Normal Text/Bold
-              Text(
-                widget.title,
-                style: Fonts.normalTextBold.copyWith(
-                  color: ColorStyles.white,
-                ),
-              ),
-              const SizedBox(width: 30),
-              const Icon(
-                Icons.arrow_forward,
-                color: Colors.white,
-                size: 20,
-              ),
-            ],
+          child: Text(
+            widget.title,
+            style: Fonts.normalTextBold.copyWith(
+              color: ColorStyles.white,
+            ),
           ),
         ),
       ),

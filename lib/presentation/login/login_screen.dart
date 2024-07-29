@@ -15,100 +15,116 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 50, 30, 27),
-          child: Consumer<LoginViewModel>(
-            builder: (context, viewModel, child) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Hello',
-                      style: Fonts.headerTextBold.copyWith(
-                        color: ColorStyles.black,
-                      )),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(30, 50, 30, 27),
+            child: Consumer<LoginViewModel>(
+              builder: (context, viewModel, child) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Hello',
+                        style: Fonts.headerTextBold.copyWith(
+                          color: ColorStyles.black,
+                        )),
 
-                  Text(
-                    'welcome Back!',
-                    style: Fonts.largeTextRegular.copyWith(
-                      color: ColorStyles.black2,
+                    Text(
+                      'welcome Back!',
+                      style: Fonts.largeTextRegular.copyWith(
+                        color: ColorStyles.black2,
+                      ),
                     ),
-                  ),
-                  // Email TextField
-                  InputField(
-                    label: 'Email',
-                    placeHolder: 'Enter Email',
-                    onChanged: (String text) {
-                      viewModel.idValue = text;
-                    },
-                    topPadding: 57,
-                  ),
-                  // Password TextField
-                  InputField(
-                    label: 'Enter Password',
-                    placeHolder: 'Enter Password',
-                    onChanged: (String text) {
-                      viewModel.passwordValue = text;
-                    },
-                    topPadding: 30,
-                  ),
-
-                  const SizedBox(height: 30),
-
-                  BigButton(
-                    title: 'Sign In',
-                    onTap: () async {
-                      await viewModel.loginUser();
-                      if (viewModel.successLogin) {
-                        context.go('/home');
-                      }
-                    },
-                  ),
-
-                  // Login Fail
-                  if (viewModel.errorMessage.isNotEmpty)
-                    const SizedBox(height: 10),
-                  Text(
-                    viewModel.errorMessage,
-                    style: Fonts.smallerTextBold.copyWith(
-                      color: ColorStyles.warningRed,
+                    // Email TextField
+                    InputField(
+                      label: '아이디',
+                      placeHolder: '아이디를 입력해주세요.',
+                      onChanged: (String text) {
+                        viewModel.idValue = text;
+                      },
+                      topPadding: 57,
                     ),
-                  ),
+                    // Password TextField
+                    InputField(
+                      label: '비밀번호',
+                      placeHolder: '비밀번호를 입력해주세요.',
+                      onChanged: (String text) {
+                        viewModel.passwordValue = text;
+                      },
+                      topPadding: 30,
+                    ),
 
-                  // Sing up
-                  GestureDetector(
-                    onTap: () {
-                      context.go('/register');
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 55),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    const SizedBox(height: 30),
+
+                    BigButton(
+                      title: '로그인',
+                      onTap: () async {
+                        await viewModel.loginUser();
+                        if (viewModel.successLogin) {
+                          context.go('/home');
+                        }
+                      },
+                    ),
+                    // Login Fail
+                    if (viewModel.errorMessage.isNotEmpty)
+                      const SizedBox(height: 10),
+                    Text(
+                      viewModel.errorMessage,
+                      style: Fonts.smallerTextBold.copyWith(
+                        color: ColorStyles.warningRed,
+                      ),
+                    ),
+
+                    // Sing up
+                    GestureDetector(
+                      onTap: () {
+                        context.push('/register');
+                      },
+                      child: Column(
                         children: [
-                          Text.rich(
-                            TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Don’t have an account? ',
-                                  style: Fonts.smallerTextBold.copyWith(
-                                    color: ColorStyles.black,
-                                  ),
+                          // 이미지 추가
+                          Padding(
+                            padding: const EdgeInsets.only(top: 30, bottom: 30),
+                            child: Center(
+                              child: ClipOval(
+                                child: Image.asset(
+                                  'assets/login_mascot.png',
+                                  width: 140,
+                                  height: 140,
+                                  fit: BoxFit.cover,
                                 ),
-                                TextSpan(
-                                  text: 'Sign up',
-                                  style: Fonts.smallerTextBold.copyWith(
-                                    color: ColorStyles.secondary100,
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: '계정이 없으신가요?',
+                                      style: Fonts.smallerTextBold.copyWith(
+                                        color: ColorStyles.black,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: ' 회원가입 하기',
+                                      style: Fonts.smallTextBold.copyWith(
+                                        color: ColorStyles.secondary100,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ),
-                  )
-                ],
-              );
-            },
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),

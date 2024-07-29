@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:sesac_ton/presentation/component/big_button.dart';
+import 'package:sesac_ton/presentation/home/home_view_model.dart';
 import 'package:sesac_ton/util/constant.dart';
 
 import '../../ui/color_styles.dart';
@@ -10,14 +13,22 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewmodel = Provider.of<HomeViewModel>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            serviceName,
-            style: Fonts.largeTextBold.copyWith(
-              color: ColorStyles.black,
-            ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.push('/profile');
+            },
+            icon: const Icon(Icons.settings),
+          ),
+        ],
+        centerTitle: true,
+        title: Text(
+          serviceName,
+          style: Fonts.largeTextBold.copyWith(
+            color: ColorStyles.black,
           ),
         ),
       ),
@@ -35,34 +46,34 @@ class HomeScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               Text(
-                '오늘 하루는 어떘어? [문구]',
+                '한 걸음 내딛어 볼까요?',
                 style: Fonts.largeTextBold.copyWith(
                   color: ColorStyles.black,
                 ),
               ),
-              const SizedBox(height: 100),
-              InkWell(
+              // const SizedBox(height: 50),
+              const Spacer(),
+              Text(
+                '${viewmodel.name}님의 능력을 기를 수 있는',
+                style: Fonts.mediumTextBold.copyWith(
+                  color: ColorStyles.grey2,
+                ),
+              ),
+              Text(
+                '문제들이 준비 되어 있어요!',
+                style: Fonts.mediumTextBold.copyWith(
+                  color: ColorStyles.grey2,
+                ),
+              ),
+              const Spacer(),
+              BigButton(
+                title: '둘러 보기',
                 onTap: () {
                   context.push('/worksheet');
                 },
-                borderRadius: BorderRadius.circular(50),
-                child: SizedBox(
-                  width: 80,
-                  height: 80,
-                  child: ClipOval(
-                    child: Center(
-                      child: Image.asset(
-                        'assets/chat_icon.png',
-                        width: 270,
-                        height: 270,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              )
             ],
           ),
         ),

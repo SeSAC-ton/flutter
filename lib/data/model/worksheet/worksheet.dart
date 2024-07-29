@@ -10,6 +10,7 @@ class Worksheet with _$Worksheet {
     required String id,
     required String category,
     required String title,
+    required String imageUrl,
   }) = _Worksheet;
 
   factory Worksheet.fromJson(Map<String, Object?> json) => _$WorksheetFromJson(json);
