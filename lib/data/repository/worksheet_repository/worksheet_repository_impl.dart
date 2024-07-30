@@ -38,7 +38,6 @@ class WorksheetRepositoryImpl implements WorksheetRepository {
       final problem = await worksheetDataSource.getProblem(id);
       return Result.success(problem);
     } catch (e) {
-      print(e);
       return Result.error(e.toString());
     }
   }
@@ -49,7 +48,6 @@ class WorksheetRepositoryImpl implements WorksheetRepository {
       final result = await worksheetDataSource.solveProblem(id, selectId);
       return Result.success(result);
     } catch (e) {
-      print(e);
       return Result.error(e.toString());
     }
   }

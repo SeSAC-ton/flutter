@@ -31,7 +31,6 @@ class ProblemViewModel with ChangeNotifier {
     final result = await _worksheetRepository.getProblem(id);
     switch (result) {
       case Success(:final data):
-        print(data);
         explain = data;
         _isLoading = false;
         _errorMessage = '';
@@ -44,10 +43,9 @@ class ProblemViewModel with ChangeNotifier {
   }
 
   Future<void> solveProblem(int id, int selectId) async {
-    print('사용자가 누른 선지의 id : $selectId');
     final result = await _worksheetRepository.solveProblem(id, selectId);
     switch (result) {
-      case Success(:final data):
+      case Success():
         _errorMessage = '';
         _isSolved = true;
         notifyListeners();

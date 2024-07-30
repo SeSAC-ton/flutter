@@ -3,7 +3,6 @@ import 'package:sesac_ton/presentation/problem/problem_view.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
-import '../../util/constant.dart';
 import 'animation/emoji_widget.dart';
 
 class ProblemScreen extends StatefulWidget {

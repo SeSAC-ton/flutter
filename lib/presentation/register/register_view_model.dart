@@ -36,7 +36,7 @@ class RegisterViewModel with ChangeNotifier {
     );
 
     switch (result) {
-      case Success(:final data):
+      case Success():
         _registerErrorMessage = '';
         notifyListeners();
       case Error(:final e):
@@ -53,7 +53,6 @@ class RegisterViewModel with ChangeNotifier {
         notifyListeners();
       case Error(:final e):
         _checkUserIdErrorMessage = e;
-        print('checkId : $e');
         notifyListeners();
     }
   }

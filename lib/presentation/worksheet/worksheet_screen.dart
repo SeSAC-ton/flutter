@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sesac_ton/presentation/worksheet/category_button_view.dart';
 import 'package:sesac_ton/presentation/worksheet/worksheet_card_view.dart';
+import 'package:sesac_ton/util/constant.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
@@ -13,35 +15,73 @@ class WorksheetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          ClipOval(
-            child: Image.asset(
-              'assets/chat_icon.png',
-              width: 48,
-              height: 48,
-            ),
-          ),
-          const SizedBox(width: 10)
-        ],
         title: Text(
-          '반가워요 [사용자]님 👋',
+          serviceName,
           style: Fonts.largeTextBold.copyWith(
             color: ColorStyles.black,
           ),
         ),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              context.push('/profile');
+            },
+            child: ClipOval(
+              child: Image.asset(
+                'assets/chat_icon.png',
+                width: 48,
+                height: 48,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10)
+        ],
+        centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              '반가워요 [사용자]님 👋',
+              style: Fonts.largeTextBold.copyWith(
+                color: ColorStyles.black,
+              ),
+            ),
+            const SizedBox(height: 10),
             // AI 질문 던지기
-            InputField(
-              placeHolder: '이름을 입력해주세요.',
-              onChanged: (String text) {},
-              maxLength: 15,
-              topPadding: 30,
-              icon: const Icon(Icons.search),
+            GestureDetector(
+              onTap: () {
+                context.push('/chat');
+              },
+              child: Container(
+                width: double.infinity,
+                height: 55,
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 1.5,
+                      color: ColorStyles.grey2,
+                    ),
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  color: ColorStyles.white,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Text(
+                        'AI에게 직접 물어볼까요?',
+                        style: Fonts.smallTextRegular.copyWith(
+                          color: ColorStyles.grey3,
+                        ),
+                      ),
+                      const Spacer(),
+                      const Icon(Icons.search)
+                    ],
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 20),
             Text(

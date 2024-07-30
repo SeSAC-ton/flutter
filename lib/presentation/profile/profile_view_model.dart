@@ -29,7 +29,6 @@ class ProfileViewModel with ChangeNotifier {
     final result = await _worksheetRepository.getSolveProblems();
     switch (result) {
       case Success(:final data):
-        print(data);
         _solveProblems = data;
         _isLoading = false;
         _errorMessage = '';

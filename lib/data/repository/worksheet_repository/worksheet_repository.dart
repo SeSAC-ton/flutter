@@ -1,11 +1,9 @@
 
-import 'package:sesac_ton/data/model/member/register/register_info.dart';
 import 'package:sesac_ton/data/model/worksheet/explain.dart';
 import 'package:sesac_ton/data/model/worksheet/problem.dart';
 import 'package:sesac_ton/data/model/worksheet/solve_problem.dart';
 
 import '../../../core/result.dart';
-import '../../model/member/login/login_info.dart';
 import '../../model/worksheet/worksheet.dart';
 
 abstract interface class WorksheetRepository {

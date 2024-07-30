@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:sesac_ton/data/data_source/chat_data_source/chat_data_source_impl.dart';
@@ -29,13 +28,12 @@ final router = GoRouter(
     GoRoute(
       path: '/',
       builder: (context, state) {
-        final chatDataSource = ChatDataSourceImpl();
-        final chatRepository =
-        ChatRepositoryImpl(chatDataSource);
+        final memberDataSource = MemberDataSourceImpl();
+        final memberRepository = MemberRepositoryImpl(memberDataSource);
 
-        return ChangeNotifierProvider<ChatViewModel>(
-          create: (context) => ChatViewModel(chatRepository),
-          child: const ChatScreen(),
+        return ChangeNotifierProvider<HomeViewModel>(
+          create: (context) => HomeViewModel(memberRepository),
+          child: const HomeScreen(),
         );
       },
     ),

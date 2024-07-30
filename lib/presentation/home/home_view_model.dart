@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:sesac_ton/data/repository/member_repository/member_repository.dart';
-import 'package:sesac_ton/data/repository/worksheet_repository/worksheet_repository.dart';
 
 import '../../core/result.dart';
-import '../../data/model/worksheet/explain.dart';
 
 class HomeViewModel with ChangeNotifier {
   final MemberRepository _memberRepository;

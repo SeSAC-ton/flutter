@@ -10,9 +10,12 @@ class ChatViewModel extends ChangeNotifier {
   }
 
   List<String> _messages = [];
+  List<String> _userMessages = [];
+
   String _currentMessage = '';
 
   List<String> get messages => _messages;
+  List<String> get userMessages => _userMessages;
 
   String get currentMessage => _currentMessage;
 
@@ -20,34 +23,29 @@ class ChatViewModel extends ChangeNotifier {
     _chatRepository.initChat().listen((result) {
       switch (result) {
         case Success<String>(:final data):
-          _messages.add(data);
           notifyListeners();
         case Error<String>(:final e):
-          print('Error: $e');
+          notifyListeners();
       }
     });
   }
 
   Future<void> sendMessage(String message) async {
-    _messages.add("User: $message");
+    _userMessages.add(message);
+    _currentMessage = '';
     notifyListeners();
-
-    String tempMessages = '';
 
     await for (final result in _chatRepository.sendMessage(message)) {
       switch (result) {
         case Success(:final data):
-          tempMessages += data;
-          _currentMessage = tempMessages;
-          notifyListeners();
+          _currentMessage += data;
         case Error(:final e):
-          tempMessages += "Error: $e";
-          _currentMessage = tempMessages;
-          notifyListeners();
+          _currentMessage = "Error: $e";
       }
+      notifyListeners();
     }
 
-    _messages.add(tempMessages);
+    _messages.add(_currentMessage);
     _currentMessage = '';
     notifyListeners();
   }

@@ -21,7 +21,7 @@ class TitleWidget extends StatelessWidget {
         color: ColorStyles.white,
         borderRadius: BorderRadius.circular(10.0),
         border: Border.all(
-          color: ColorStyles.white,
+          color: ColorStyles.primary100,
           width: 1.0,
         ),
       ),

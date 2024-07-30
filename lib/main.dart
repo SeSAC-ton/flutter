@@ -1,9 +1,8 @@
-import 'package:firebase_vertexai/firebase_vertexai.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sesac_ton/ui/color_styles.dart';
 
 import 'core/router.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {

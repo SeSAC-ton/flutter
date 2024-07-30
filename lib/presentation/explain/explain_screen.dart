@@ -7,7 +7,6 @@ import 'package:sesac_ton/presentation/explain/explain_view_model.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
-import '../../util/constant.dart';
 import '../component/title_widget.dart';
 
 class ExplainScreen extends StatelessWidget {
@@ -55,10 +54,11 @@ class ExplainScreen extends StatelessWidget {
                       ),
                       const Spacer(),
                       BigButton(
-                          title: '문제 풀기',
-                          onTap: () {
-                            context.push('/problem/$id');
-                          }),
+                        title: '문제 풀기',
+                        onTap: () {
+                          context.push('/problem/$id');
+                        },
+                      ),
                       const SizedBox(height: 20),
                     ],
                   );

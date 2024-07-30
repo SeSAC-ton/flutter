@@ -30,7 +30,7 @@ class LoginViewModel with ChangeNotifier {
     );
 
     switch (result) {
-      case Success(:final data):
+      case Success():
         _successLogin = true;
         _errorMessage = '';
         notifyListeners();

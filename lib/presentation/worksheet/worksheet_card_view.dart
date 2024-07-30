@@ -18,7 +18,7 @@ class WorksheetCardView extends StatelessWidget {
       ColorStyles.third,
       ColorStyles.fourth
     ];
-    final viewModel = Provider.of<WorksheetViewModel>(context);
+    final viewModel = context.watch<WorksheetViewModel>();
     final worksheets = viewModel.worksheets;
     return Expanded(
       child: GridView(

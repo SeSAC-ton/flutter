@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:sesac_ton/data/model/worksheet/worksheet.dart';
-import 'package:sesac_ton/presentation/component/warning_text.dart';
 import 'package:sesac_ton/presentation/profile/profile_view_model.dart';
-import 'package:sesac_ton/presentation/register/register_view_model.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
 import '../../util/constant.dart';
-import '../component/big_button.dart';
-import '../component/input_field.dart';
 import 'component/worksheet_card_widget.dart';
 
 class ProfileScreen extends StatelessWidget {

@@ -22,7 +22,7 @@ class CategoryButton extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         margin: const EdgeInsets.all(8.0),
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(30),

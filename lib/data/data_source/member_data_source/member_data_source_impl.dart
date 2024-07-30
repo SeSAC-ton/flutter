@@ -26,7 +26,6 @@ class MemberDataSourceImpl implements MemberDataSource {
 
       final result = jsonDecode(response.body);
       // member_idx 값 넣어주기 필요.
-      print(result);
       return Result.success(result);
     } catch (e) {
       return Result.error(e.toString());
@@ -44,19 +43,14 @@ class MemberDataSourceImpl implements MemberDataSource {
         body: jsonEncode(registerInfo.toJson()),
       );
 
-      print(jsonEncode(registerInfo.toJson()));
-      print(response.statusCode);
-      print(response.body);
       if (response.statusCode != 200) {
         print(Result.error(jsonDecode(response.body)['code_msg']));
         return Result.error(jsonDecode(response.body)['code_msg']);
       }
 
       final result = jsonDecode(response.body);
-      print('success');
       return Result.success(result);
     } catch (e) {
-      print(e.toString());
       return Result.error(e.toString());
     }
   }
@@ -79,10 +73,8 @@ class MemberDataSourceImpl implements MemberDataSource {
       }
 
       final result = jsonDecode(response.body);
-      print('success');
       return Result.success(result);
     } catch (e) {
-      print(e.toString());
       return Result.error(e.toString());
     }
   }

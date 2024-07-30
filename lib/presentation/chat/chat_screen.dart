@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:sesac_ton/presentation/chat/chat_view_model.dart';
+import 'package:sesac_ton/presentation/chat/component/chat_content_widget.dart';
+
+import '../../ui/color_styles.dart';
+import '../../ui/text_styles.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -16,6 +21,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _scrollToBottom();
     });
@@ -24,29 +30,22 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final viewModel = Provider.of<ChatViewModel>(context);
-    viewModel.addListener(_safeScrollToBottom);
+    _scrollToBottom();
   }
 
   @override
   void dispose() {
-    final viewModel = Provider.of<ChatViewModel>(context, listen: false);
-    viewModel.removeListener(_safeScrollToBottom);
     _scrollController.dispose();
     _controller.dispose();
     super.dispose();
   }
 
-  void _safeScrollToBottom() {
-    // 현재 프레임에서 안전하게 스크롤을 수행하도록 추가
-    WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
-  }
 
   void _scrollToBottom() {
     if (_scrollController.hasClients) {
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 600),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeOut,
       );
     }
@@ -54,59 +53,87 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<ChatViewModel>(context);
+    final viewModel = context.watch<ChatViewModel>();
+    final responses = viewModel.messages;
+    final currentMessage = viewModel.currentMessage;
+    final requests = viewModel.userMessages;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chat with AI'),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              controller: _scrollController,
-              itemCount: viewModel.messages.length + (viewModel.currentMessage.isNotEmpty ? 1 : 0),
-              itemBuilder: (context, index) {
-                if (index < viewModel.messages.length) {
-                  return ListTile(
-                    title: Text(viewModel.messages[index]),
-                  );
-                } else {
-                  return ListTile(
-                    title: Text(viewModel.currentMessage),
-                  );
-                }
-              },
-            ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            context.pop();
+          },
+        ),
+        centerTitle: true,
+        title: Text(
+          '챗봇',
+          style: Fonts.largeTextBold.copyWith(
+            color: ColorStyles.black,
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    decoration: const InputDecoration(
-                      hintText: 'Type your message...',
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                controller: _scrollController,
+                itemCount:
+                    responses.length + (currentMessage.isNotEmpty ? 1 : 0),
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      ChatContentWidget(
+                        request: requests[index],
+                        response: (index < responses.length)
+                            ? responses[index]
+                            : currentMessage,
+                      )
+                    ],
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      decoration: InputDecoration(
+                        hintStyle: Fonts.smallTextRegular.copyWith(
+                          color: ColorStyles.black,
+                        ),
+                        hintText: '무엇이 궁금하신가요 ?',
+                      ),
                     ),
                   ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: () {
-                    final message = _controller.text;
-                    print('uimeesage: $message');
-                    if (message.isNotEmpty) {
-                      viewModel.sendMessage(message);
-                      _controller.clear();
-                      FocusScope.of(context).unfocus(); // 메시지를 보낸 후 키보드 닫기
-                    }
-                  },
-                ),
-              ],
+                  const SizedBox(width: 20),
+                  ClipOval(
+                    child: Container(
+                      color: ColorStyles.white,
+                      child: IconButton(
+                        icon: const Icon(Icons.send),
+                        onPressed: () {
+                          final message = _controller.text;
+                          if (message.isNotEmpty) {
+                            viewModel.sendMessage(message);
+                            _controller.clear();
+                            FocusScope.of(context).unfocus();
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

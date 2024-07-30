@@ -28,7 +28,6 @@ class ExplainViewModel with ChangeNotifier {
     final result = await _worksheetRepository.getExplain(id);
     switch (result) {
       case Success(:final data):
-        print(data);
         explain = data;
         _isLoading = false;
         _errorMessage = '';

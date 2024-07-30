@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewmodel = Provider.of<HomeViewModel>(context);
+    final viewmodel = context.watch<HomeViewModel>();
     return Scaffold(
       appBar: AppBar(
         actions: [

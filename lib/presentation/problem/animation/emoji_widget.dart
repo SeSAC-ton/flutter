@@ -55,8 +55,8 @@ class _FireworkWidgetState extends State<FireworkWidget>
       emojiLifeTimeAnimation;
 
   // 애니메이션 지속 시간을 결정하는 변수
-  late Duration _emojiLifetimeDuration = Duration(seconds: 5);
-  late Duration _emojiShootDuration = Duration(seconds: 2);
+  late final Duration _emojiLifetimeDuration = const Duration(seconds: 5);
+  late final Duration _emojiShootDuration = const Duration(seconds: 2);
 
   final int emojiAmount = 30;
 
@@ -155,6 +155,7 @@ class _FireworkWidgetState extends State<FireworkWidget>
 
 class EmojiWidget extends StatefulWidget {
   const EmojiWidget({
+    super.key,
     required this.emojiShootAnimation,
     required this.emojiFloatYAnimation,
     required this.emojiFloatXAnimation,

@@ -10,7 +10,7 @@ class CategoryButtonView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<WorksheetViewModel>(context);
+    final viewModel = context.watch<WorksheetViewModel>();
     return SizedBox(
       width: double.infinity,
       height: 200,

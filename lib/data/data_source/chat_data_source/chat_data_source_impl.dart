@@ -8,32 +8,32 @@ class ChatDataSourceImpl implements ChatDataSource {
 
   @override
   Stream<Result<String>> initChat() async* {
-    final model =
-        FirebaseVertexAI.instance.generativeModel(model: 'gemini-1.5-flash');
+    const personalization =
+        '너는 경계선 지능장애를 가진 사람들에게 친절히, 꼼꼼히 답을 답변해주는 ai야. 무언가를 물어볼 때 이 사람이 실생활에서 너의 답변을 보고 따라할 수 있도록 상세히 순서대로 알려줘야 돼. 하지만 너무 길게 알려주면 읽기 어려우니까 적당히 핵심적이고 필수적인 것들을 알려줘야해.';
+    final model = FirebaseVertexAI.instance.generativeModel(
+      model: 'gemini-1.5-flash',
+      systemInstruction: Content.system(personalization),
+    );
 
     _chat = model.startChat();
-    print('Chat initialized'); // 디버깅 로그 추가
-    yield const Result.success('Chat initialized');
   }
 
   @override
   Stream<Result<String>> sendMessage(String message) async* {
     try {
-      print('Sending message: $message'); // 디버깅 로그 추가
       final prompt = Content.text(message);
       final responseStream = _chat.sendMessageStream(prompt);
 
       await for (final response in responseStream) {
         if (response.text != null) {
-          print('Response received: ${response.text}'); // 디버깅 로그 추가
-          yield Result.success(response.text!);
+          for (int i = 0; i < response.text!.length; i++) {
+            yield Result.success(response.text![i]);
+          }
         } else {
-          print('Response is null'); // 디버깅 로그 추가
           yield const Result.error('응답이 없습니다.');
         }
       }
     } catch (error) {
-      print('Error: $error'); // 디버깅 로그 추가
       yield Result.error(error.toString());
     }
   }
