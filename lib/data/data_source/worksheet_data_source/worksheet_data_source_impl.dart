@@ -62,6 +62,7 @@ class WorksheetDataSourceImpl implements WorksheetDataSource {
   Future<Problem> getProblem(int id) async {
     const url = '$baseUrl/worksheet_v_1_0_0/getWorksheetDetail';
 
+    print(id);
     try {
       final response = await http.get(
         Uri.parse(url).replace(
@@ -72,11 +73,13 @@ class WorksheetDataSourceImpl implements WorksheetDataSource {
         ),
       );
 
+      print(response.statusCode);
       if (response.statusCode != 200) {
         throw Exception(jsonDecode(response.body)['code_msg']);
       }
 
       final json = jsonDecode(response.body);
+      print(json);
       return Problem.fromJson(json);
     } catch (e) {
       throw Exception('datasource error');

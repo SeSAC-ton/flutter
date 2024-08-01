@@ -31,11 +31,13 @@ class WorksheetViewModel with ChangeNotifier {
     final result = await _worksheetRepository.getWorksheets();
     switch (result) {
       case Success(:final data):
+        print(data);
         _worksheets = data.where((worksheet) => worksheet.category == _selectedCategory).toList();
         _isLoading = false;
         _errorMessage = '';
         notifyListeners();
       case Error(:final e):
+        print(e);
         _isLoading = true;
         _errorMessage = 'get Worksheet failed: $e';
         notifyListeners();

@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:sesac_ton/core/result.dart';
-import 'package:sesac_ton/util/network.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/model/member/login/login_info.dart';
 import '../../data/repository/member_repository/member_repository.dart';
-import '../../util/platform.dart';
 
 class LoginViewModel with ChangeNotifier {
   final MemberRepository _memberRepository;
@@ -55,6 +53,7 @@ class LoginViewModel with ChangeNotifier {
     if (id != null && password != null) {
       idValue = id;
       passwordValue = password;
+      await loginUser();
     }
   }
 }

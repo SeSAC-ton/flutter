@@ -41,14 +41,17 @@ class ProblemView extends StatelessWidget {
                     ...problem.options.map(
                       (Option option) => OptionButton(
                         option: option,
-                        onTap: () {
+                        onTap: () async {
                           if (!viewModel.isSolved) {
                             viewModel.solveProblem(id, option.id);
                             if (option.isAnswer) {
                               workAnimation();
                             }
                           }
-                        }, isSolved: viewModel.isSolved,
+                          await Future.delayed(const Duration(seconds: 3));
+                          context.go('/home');
+                        },
+                        isSolved: viewModel.isSolved,
                       ),
                     ),
                     if (viewModel.errorMessage.isNotEmpty)

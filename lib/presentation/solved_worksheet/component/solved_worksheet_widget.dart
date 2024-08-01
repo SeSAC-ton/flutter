@@ -3,14 +3,16 @@ import 'package:sesac_ton/data/model/worksheet/worksheet.dart';
 
 import '../../../ui/color_styles.dart';
 
-class WorksheetTitleWidget extends StatelessWidget {
+class SolvedWorksheetWidget extends StatelessWidget {
   final void Function() onTap;
-  final Worksheet worksheet;
+  final String title;
+  final bool isCorrect;
 
-  const WorksheetTitleWidget({
+  const SolvedWorksheetWidget({
     super.key,
     required this.onTap,
-    required this.worksheet,
+    required this.title,
+    required this.isCorrect,
   });
 
   @override
@@ -20,21 +22,21 @@ class WorksheetTitleWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-            height: 40,
+            height: 50,
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             decoration: BoxDecoration(
-              color: ColorStyles.white,
+              color: (isCorrect) ? ColorStyles.primary60 : ColorStyles.secondary20,
               borderRadius: BorderRadius.circular(10.0),
               border: Border.all(
-                color: ColorStyles.primary100,
+                color: (isCorrect) ? ColorStyles.primary100 : ColorStyles.secondary60,
                 width: 1.0,
               ),
             ),
             child: Row(
               children: [
                 Text(
-                  worksheet.title,
+                  title,
                   style: const TextStyle(
                     color: ColorStyles.grey1,
                   ),

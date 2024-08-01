@@ -20,10 +20,17 @@ class LoginScreen extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(30, 50, 30, 27),
             child: Consumer<LoginViewModel>(
               builder: (context, viewModel, child) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  viewModel.tryAutoLogin().then((_) {
+                    if (viewModel.successLogin) {
+                      context.go('/home');
+                    }
+                  });
+                });
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('반가워요',
+                    Text('반가워요👋',
                         style: Fonts.headerTextBold.copyWith(
                           color: ColorStyles.black,
                         )),

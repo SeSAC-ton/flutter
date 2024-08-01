@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:sesac_ton/data/model/worksheet/worksheet.dart';
-import 'package:sesac_ton/presentation/profile/profile_view_model.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sesac_ton/util/network.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
 import '../../util/constant.dart';
 import '../component/big_button.dart';
-import 'component/worksheet_card_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<ProfileViewModel>();
-    final solveProblems = viewModel.solveProblems;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -57,7 +52,9 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 20),
             BigButton(
               title: '발자취 확인',
-              onTap: () {},
+              onTap: () {
+                context.push('/solved_worksheet');
+              },
               leading: Image.asset(
                 'assets/bear_footprint.png',
                 width: 36,
@@ -67,14 +64,15 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 10),
             BigButton(
               title: '업적 확인',
-              onTap: () {},
               leading: Image.asset(
-                'assets/tropy.png',
+                'assets/tropy_icon.png',
                 width: 36,
                 height: 36,
               ),
+              onTap: () {
+                context.push('/achievement');
+              },
             ),
-            const SizedBox(height: 10),
             const Spacer(),
             BigButton(
               title: '로그 아웃',

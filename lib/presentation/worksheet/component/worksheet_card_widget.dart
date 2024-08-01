@@ -32,7 +32,7 @@ class WorksheetCardWidget extends StatelessWidget {
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.network(
+                child: Image.asset(
                   imageUrl,
                   fit: BoxFit.cover, // 이미지가 컨테이너에 맞게 조정되도록 설정
                 ),

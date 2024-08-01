@@ -21,7 +21,7 @@ class WorksheetCardView extends StatelessWidget {
     final viewModel = context.watch<WorksheetViewModel>();
     final worksheets = viewModel.worksheets;
     return SizedBox(
-      height: 185,
+      height: 370,
       width: double.infinity,
       child: GridView(
         physics: const NeverScrollableScrollPhysics(),
