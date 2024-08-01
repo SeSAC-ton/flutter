@@ -48,11 +48,8 @@ class ExplainScreen extends StatelessWidget {
                     children: [
                       TitleWidget(title: explain.title),
                       const SizedBox(height: 20),
-                      ContentWidget(
-                        content: explain.content,
-                        height: 500,
-                      ),
-                      const Spacer(),
+                      ContentWidget(content: explain.content),
+                      const SizedBox(height: 20),
                       BigButton(
                         title: '문제 풀기',
                         onTap: () {

@@ -12,7 +12,8 @@ class WorksheetCardWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.color,
-    required this.onTab, required this.imageUrl,
+    required this.onTab,
+    required this.imageUrl,
   });
 
   @override
@@ -21,19 +22,23 @@ class WorksheetCardWidget extends StatelessWidget {
       onTap: onTab,
       child: Container(
         margin: const EdgeInsets.all(8.0),
-        padding: const EdgeInsets.only(top: 16, bottom: 4, left: 6, right: 6),
+        padding: const EdgeInsets.only(top: 8, bottom: 4, left: 6, right: 6),
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Column(
           children: [
-            SizedBox(
-              width: 100,
-              height: 100,
-              child: Image.network(imageUrl),
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.cover, // 이미지가 컨테이너에 맞게 조정되도록 설정
+                ),
+              ),
             ),
-            const Spacer(),
+            const SizedBox(height: 5),
             Text(
               title,
               style: Fonts.smallerTextBold,

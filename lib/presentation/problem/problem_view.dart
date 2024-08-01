@@ -36,10 +36,7 @@ class ProblemView extends StatelessWidget {
                   children: [
                     TitleWidget(title: problem.title),
                     const SizedBox(height: 20),
-                    ContentWidget(
-                      content: problem.content,
-                      height: 350,
-                    ),
+                    ContentWidget(content: problem.content),
                     const SizedBox(height: 20),
                     ...problem.options.map(
                       (Option option) => OptionButton(

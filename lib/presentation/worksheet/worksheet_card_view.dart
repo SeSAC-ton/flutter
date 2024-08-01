@@ -20,8 +20,12 @@ class WorksheetCardView extends StatelessWidget {
     ];
     final viewModel = context.watch<WorksheetViewModel>();
     final worksheets = viewModel.worksheets;
-    return Expanded(
+    return SizedBox(
+      height: 185,
+      width: double.infinity,
       child: GridView(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 1,
@@ -33,7 +37,6 @@ class WorksheetCardView extends StatelessWidget {
               color: colors[index],
               imageUrl: worksheet.imageUrl,
               onTab: () {
-                // 임시
                 context.push('/explain/${worksheet.id}');
               },
             ),

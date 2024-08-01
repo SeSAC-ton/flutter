@@ -12,19 +12,24 @@ class CategoryButtonView extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = context.watch<WorksheetViewModel>();
     return SizedBox(
+      height: 180,
       width: double.infinity,
-      height: 200,
       child: GridView(
+        physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 2,
         ),
         children: [
           CategoryButton(
-            backgroundColor: viewModel.selectedCategory == Category.personal.title
+            backgroundColor:
+                viewModel.selectedCategory == Category.personal.title
+                    ? Category.personal.color
+                    : ColorStyles.white,
+            icon: Icons.home,
+            iconColor: viewModel.selectedCategory != Category.personal.title
                 ? Category.personal.color
                 : ColorStyles.white,
-            icon: Icons.home,
             label: Category.personal.title,
             onPressed: () => viewModel.selectCategory(Category.personal.title),
           ),
@@ -33,14 +38,21 @@ class CategoryButtonView extends StatelessWidget {
                 ? Category.social.color
                 : ColorStyles.white,
             icon: Icons.group,
+            iconColor: viewModel.selectedCategory != Category.social.title
+                ? Category.social.color
+                : ColorStyles.white,
             label: Category.social.title,
             onPressed: () => viewModel.selectCategory(Category.social.title),
           ),
           CategoryButton(
-            backgroundColor: viewModel.selectedCategory == Category.relation.title
+            backgroundColor:
+                viewModel.selectedCategory == Category.relation.title
+                    ? Category.relation.color
+                    : ColorStyles.white,
+            icon: Icons.person,
+            iconColor: viewModel.selectedCategory != Category.relation.title
                 ? Category.relation.color
                 : ColorStyles.white,
-            icon: Icons.person,
             label: Category.relation.title,
             onPressed: () => viewModel.selectCategory(Category.relation.title),
           ),
@@ -49,6 +61,9 @@ class CategoryButtonView extends StatelessWidget {
                 ? Category.job.color
                 : ColorStyles.white,
             icon: Icons.work,
+            iconColor: viewModel.selectedCategory != Category.job.title
+                ? Category.job.color
+                : ColorStyles.white,
             label: Category.job.title,
             onPressed: () => viewModel.selectCategory(Category.job.title),
           ),

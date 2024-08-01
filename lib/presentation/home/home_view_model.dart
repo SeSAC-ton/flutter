@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:sesac_ton/data/repository/member_repository/member_repository.dart';
+import 'package:sesac_ton/util/network.dart';
 
 import '../../core/result.dart';
 
@@ -15,8 +16,6 @@ class HomeViewModel with ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
-  String name = '천사';
-
   String get errorMessage => _errorMessage;
 
   Future<void> getUserName() async {
@@ -26,7 +25,7 @@ class HomeViewModel with ChangeNotifier {
     final result = await _memberRepository.getUserName();
     switch (result) {
       case Success(:final data):
-        name = data;
+        userName = data;
         _isLoading = false;
         _errorMessage = '';
         notifyListeners();

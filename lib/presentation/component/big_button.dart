@@ -6,11 +6,13 @@ import '../../ui/text_styles.dart';
 class BigButton extends StatefulWidget {
   final void Function() onTap;
   final String title;
+  final Widget? leading;
 
   const BigButton({
     super.key,
     required this.title,
     required this.onTap,
+    this.leading,
   });
 
   @override
@@ -25,7 +27,7 @@ class _BigButtonState extends State<BigButton> {
     return GestureDetector(
       onTapDown: (_) {
         setState(() {
-          buttonColor = ColorStyles.primary80;
+          buttonColor = ColorStyles.primary60;
         });
       },
       onTapUp: (_) {
@@ -45,13 +47,24 @@ class _BigButtonState extends State<BigButton> {
           borderRadius: const BorderRadius.all(Radius.circular(30)),
           color: buttonColor,
         ),
-        child: Center(
-          child: Text(
-            widget.title,
-            style: Fonts.normalTextBold.copyWith(
-              color: ColorStyles.white,
+        child: Stack(
+          children: [
+            if (widget.leading != null)
+              Positioned(
+                left: 20,
+                top: 0,
+                bottom: 0,
+                child: widget.leading!,
+              ),
+            Center(
+              child: Text(
+                widget.title,
+                style: Fonts.normalTextBold.copyWith(
+                  color: ColorStyles.white,
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sesac_ton/presentation/component/big_button.dart';
 import 'package:sesac_ton/presentation/home/home_view_model.dart';
 import 'package:sesac_ton/util/constant.dart';
+import 'package:sesac_ton/util/network.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
@@ -56,7 +57,7 @@ class HomeScreen extends StatelessWidget {
               // const SizedBox(height: 50),
               const Spacer(),
               Text(
-                '${viewmodel.name}님의 능력을 기를 수 있는',
+                '$userName님의 능력을 기를 수 있는',
                 style: Fonts.mediumTextBold.copyWith(
                   color: ColorStyles.grey2,
                 ),

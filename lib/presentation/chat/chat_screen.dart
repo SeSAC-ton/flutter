@@ -40,7 +40,6 @@ class _ChatScreenState extends State<ChatScreen> {
     super.dispose();
   }
 
-
   void _scrollToBottom() {
     if (_scrollController.hasClients) {
       _scrollController.animateTo(
@@ -79,22 +78,31 @@ class _ChatScreenState extends State<ChatScreen> {
         child: Column(
           children: [
             Expanded(
-              child: ListView.builder(
-                controller: _scrollController,
-                itemCount:
-                    responses.length + (currentMessage.isNotEmpty ? 1 : 0),
-                itemBuilder: (context, index) {
-                  return Column(
+              child: SingleChildScrollView(
+                reverse: true,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom * 0.01,
+                  ),
+                  child: Column(
                     children: [
-                      ChatContentWidget(
-                        request: requests[index],
-                        response: (index < responses.length)
-                            ? responses[index]
-                            : currentMessage,
-                      )
+                      ListView.builder(
+                        controller: _scrollController,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: requests.length,
+                        itemBuilder: (context, index) {
+                          return ChatContentWidget(
+                            request: requests[index],
+                            response: (index < responses.length)
+                                ? responses[index]
+                                : currentMessage,
+                          );
+                        },
+                      ),
                     ],
-                  );
-                },
+                  ),
+                ),
               ),
             ),
             Padding(
@@ -135,6 +143,7 @@ class _ChatScreenState extends State<ChatScreen> {
           ],
         ),
       ),
+      resizeToAvoidBottomInset: true,
     );
   }
 }

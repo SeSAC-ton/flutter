@@ -5,6 +5,7 @@ import '../../../ui/text_styles.dart';
 class CategoryButton extends StatelessWidget {
   final Color backgroundColor;
   final IconData icon;
+  final Color iconColor;
   final String label;
   final void Function() onPressed;
 
@@ -13,7 +14,7 @@ class CategoryButton extends StatelessWidget {
     required this.backgroundColor,
     required this.icon,
     required this.label,
-    required this.onPressed,
+    required this.onPressed, required this.iconColor,
   });
 
   @override
@@ -31,7 +32,7 @@ class CategoryButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
-              backgroundColor: Colors.white,
+              backgroundColor: iconColor,
               child: Icon(icon),
             ),
             const SizedBox(width: 8.0),
