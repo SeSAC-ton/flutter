@@ -9,8 +9,8 @@ class ChatViewModel extends ChangeNotifier {
     initChat();
   }
 
-  List<String> _messages = [];
-  List<String> _userMessages = [];
+  final List<String> _messages = [];
+  final List<String> _userMessages = [];
 
   String _currentMessage = '';
 

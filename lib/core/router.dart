@@ -20,23 +20,29 @@ import 'package:sesac_ton/presentation/profile/profile_screen.dart';
 import 'package:sesac_ton/presentation/profile/profile_view_model.dart';
 import 'package:sesac_ton/presentation/register/register_screen.dart';
 import 'package:sesac_ton/presentation/register/register_view_model.dart';
+import 'package:sesac_ton/presentation/splash/splash_screen.dart';
 import 'package:sesac_ton/presentation/worksheet/worksheet_screen.dart';
 import 'package:sesac_ton/presentation/worksheet/worksheet_view_model.dart';
 
 final router = GoRouter(
   routes: [
+    // GoRoute(
+    //   path: '/',
+    //   builder: (context, state) => const SplashScreen(),
+    // ),
     GoRoute(
       path: '/',
       builder: (context, state) {
         final memberDataSource = MemberDataSourceImpl();
         final memberRepository = MemberRepositoryImpl(memberDataSource);
 
-        return ChangeNotifierProvider<HomeViewModel>(
-          create: (context) => HomeViewModel(memberRepository),
-          child: const HomeScreen(),
+        return ChangeNotifierProvider<LoginViewModel>(
+          create: (context) => LoginViewModel(memberRepository),
+          child: const LoginScreen(),
         );
       },
     ),
+
     GoRoute(
       path: '/login',
       builder: (context, state) {
@@ -121,7 +127,7 @@ final router = GoRouter(
       builder: (context, state) {
         final worksheetDatasource = WorksheetDataSourceImpl();
         final worksheetRepository =
-        WorksheetRepositoryImpl(worksheetDatasource);
+            WorksheetRepositoryImpl(worksheetDatasource);
 
         return ChangeNotifierProvider<ProfileViewModel>(
           create: (context) => ProfileViewModel(worksheetRepository),
@@ -133,8 +139,7 @@ final router = GoRouter(
       path: '/chat',
       builder: (context, state) {
         final chatDataSource = ChatDataSourceImpl();
-        final chatRepository =
-        ChatRepositoryImpl(chatDataSource);
+        final chatRepository = ChatRepositoryImpl(chatDataSource);
 
         return ChangeNotifierProvider<ChatViewModel>(
           create: (context) => ChatViewModel(chatRepository),

@@ -23,14 +23,14 @@ class _ChatScreenState extends State<ChatScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _scrollToBottom();
+      _scrollToBottom(300);
     });
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _scrollToBottom();
+    _scrollToBottom(300);
   }
 
   @override
@@ -40,11 +40,11 @@ class _ChatScreenState extends State<ChatScreen> {
     super.dispose();
   }
 
-  void _scrollToBottom() {
+  void _scrollToBottom(int second) {
     if (_scrollController.hasClients) {
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 300),
+        duration: Duration(milliseconds: second),
         curve: Curves.easeOut,
       );
     }
@@ -128,6 +128,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         icon: const Icon(Icons.send),
                         onPressed: () {
                           final message = _controller.text;
+                          _scrollToBottom(3000);
                           if (message.isNotEmpty) {
                             viewModel.sendMessage(message);
                             _controller.clear();

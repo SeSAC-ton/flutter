@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:sesac_ton/data/model/member/register/register_info.dart';
+import 'package:sesac_ton/data/model/member/user_info.dart';
 import 'package:sesac_ton/util/network.dart';
 
 import '../../../core/result.dart';
@@ -13,6 +14,7 @@ class MemberDataSourceImpl implements MemberDataSource {
   Future<Result<void>> loginUser(LoginInfo loginInfo) async {
     const url = '$baseUrl/login_v_1_0_0/loginUser';
 
+    print(jsonEncode(loginInfo.toJson()));
     try {
       final response = await http.post(
         Uri.parse(url),
@@ -20,12 +22,17 @@ class MemberDataSourceImpl implements MemberDataSource {
         body: jsonEncode(loginInfo.toJson()),
       );
 
+
+      print(response.statusCode);
       if (response.statusCode != 200) {
         return Result.error(jsonDecode(response.body)['code_msg']);
       }
 
       final result = jsonDecode(response.body);
       // member_idx 값 넣어주기 필요.
+      print(result);
+      memberIdx = int.parse(result['member_idx']);
+      userName = result['member_name'];
       return Result.success(result);
     } catch (e) {
       return Result.error(e.toString());
@@ -80,7 +87,7 @@ class MemberDataSourceImpl implements MemberDataSource {
   }
 
   @override
-  Future<Result<String>> getUserName() async {
+  Future<Result<UserInfo>> getUserName() async {
     const url = '$baseUrl/name_v_1_0_0/getUserName';
     try {
       final response = await http.get(
@@ -96,9 +103,10 @@ class MemberDataSourceImpl implements MemberDataSource {
       }
 
       final json = jsonDecode(response.body);
-      return Result.success(json['name']);
+      final result = UserInfo.fromJson(json);
+      return Result.success(result);
     } catch (e) {
-      throw Exception('datasource error');
+      return Result.error(e.toString());
     }
   }
 }

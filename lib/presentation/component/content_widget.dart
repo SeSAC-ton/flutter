@@ -15,7 +15,7 @@ class ContentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
         decoration: BoxDecoration(
           color: ColorStyles.white,
           borderRadius: BorderRadius.circular(20.0),

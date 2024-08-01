@@ -46,6 +46,7 @@ dependencies:
   go_router: ^14.2.1
   firebase_core: ^2.24.2
   firebase_vertexai: ^0.1.1
+  flutter_native_splash: ^2.4.1
 
 dev_dependencies:
   flutter_test:
@@ -103,3 +104,16 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/splash.png
+  fullscreen: true
+  ios_content_mode: scaleToFill
+  android_gravity: fill
+  android_12:
+    color: "#FFFFFF"
+    background_image: assets/splash.png
+    fullscreen : true
+  ios: false
+  web: false

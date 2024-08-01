@@ -1,5 +1,6 @@
 import 'package:sesac_ton/data/data_source/member_data_source/member_data_source.dart';
 import 'package:sesac_ton/data/model/member/register/register_info.dart';
+import 'package:sesac_ton/data/model/member/user_info.dart';
 
 import '../../../core/result.dart';
 import '../../model/member/login/login_info.dart';
@@ -20,5 +21,5 @@ class MemberRepositoryImpl implements MemberRepository {
   Future<Result<void>> checkUserId(String id) => memberDataSource.checkUserId(id);
 
   @override
-  Future<Result<String>> getUserName() => memberDataSource.getUserName();
+  Future<Result<UserInfo>> getUserName() => memberDataSource.getUserName();
 }

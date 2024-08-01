@@ -10,10 +10,6 @@ class LoginInfo with _$LoginInfo {
     required String id,
     @JsonKey(name: 'member_pw')
     required String password,
-    @JsonKey(name: 'gcm_key')
-    required String fcmKey,
-    @JsonKey(name: 'device_os')
-    required String deviceOs,
 
   }) = _LoginInfo;
 

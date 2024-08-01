@@ -23,13 +23,13 @@ class LoginScreen extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Hello',
+                    Text('반가워요',
                         style: Fonts.headerTextBold.copyWith(
                           color: ColorStyles.black,
                         )),
 
                     Text(
-                      'welcome Back!',
+                      '궁금한 것 모두 찾아보세요!',
                       style: Fonts.largeTextRegular.copyWith(
                         color: ColorStyles.black2,
                       ),
@@ -47,6 +47,8 @@ class LoginScreen extends StatelessWidget {
                     InputField(
                       label: '비밀번호',
                       placeHolder: '비밀번호를 입력해주세요.',
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: true,
                       onChanged: (String text) {
                         viewModel.passwordValue = text;
                       },

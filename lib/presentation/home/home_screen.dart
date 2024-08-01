@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewmodel = context.watch<HomeViewModel>();
+    context.watch<HomeViewModel>();
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+          padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20, top: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

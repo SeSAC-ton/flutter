@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:sesac_ton/data/model/member/user_info.dart';
 import 'package:sesac_ton/data/repository/member_repository/member_repository.dart';
 import 'package:sesac_ton/util/network.dart';
 
@@ -25,8 +26,9 @@ class HomeViewModel with ChangeNotifier {
     final result = await _memberRepository.getUserName();
     switch (result) {
       case Success(:final data):
-        userName = data;
         _isLoading = false;
+        userName = data.name;
+        birth = data.birth;
         _errorMessage = '';
         notifyListeners();
       case Error(:final e):
