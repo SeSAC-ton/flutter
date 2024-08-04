@@ -1,4 +1,5 @@
 import 'package:firebase_vertexai/firebase_vertexai.dart';
+import 'package:sesac_ton/util/network.dart';
 
 import '../../../core/result.dart';
 import 'chat_data_source.dart';
@@ -59,13 +60,15 @@ class ChatDataSourceImpl implements ChatDataSource {
 
   @override
   Stream<Result<String>> initChat() async* {
-    const personalization = '너는 경계선 지능장애를 가진 사람들에게 친절히, 꼼꼼히 답을 답변해주는 ai야.'
+    // 인격 부여
+    final personalization = '너는 경계선 지능장애를 가진 사람들에게 친절히, 꼼꼼히 답을 답변해주는 ai야.'
         '무언가를 물어볼 때 이 사람이 실생활에서 너의 답변을 보고 따라할 수 있도록 상세히 순서대로 알려줘야 돼.'
         '하지만 너무 길게 알려주면 읽기 어려우니까 적당히 핵심적이고 필수적인 것들을 알려줘야해.'
         '[민감한 내용]을 받게 되면 부드럽게 말해줘.'
-        '사용자의 이름은 이기영이고 생년월일은 961216이야.'
+        '사용자의 이름은 $userName이고 생년월일은 $birth이야.'
         '넌 이제 말끝마다 사랑해라는 말을 붙여';
 
+    // 안정성 검사 기준 완화
     final safetySettings = [
       SafetySetting(HarmCategory.unspecified, HarmBlockThreshold.none),
       SafetySetting(HarmCategory.hateSpeech, HarmBlockThreshold.none),
@@ -74,6 +77,7 @@ class ChatDataSourceImpl implements ChatDataSource {
       SafetySetting(HarmCategory.sexuallyExplicit, HarmBlockThreshold.none),
     ];
 
+    // model : firebase gemini-1.5-flash
     final model = FirebaseVertexAI.instance.generativeModel(
       model: 'gemini-1.5-flash',
       safetySettings: safetySettings,

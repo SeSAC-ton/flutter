@@ -38,15 +38,7 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) {
-        final memberDataSource = MemberDataSourceImpl();
-        final memberRepository = MemberRepositoryImpl(memberDataSource);
-
-        return ChangeNotifierProvider<LoginViewModel>(
-          create: (context) => LoginViewModel(memberRepository),
-          child: const SplashScreen(),
-        );
-      },
+      builder: (context, state) => const SplashScreen(),
     ),
     GoRoute(
       path: '/login',
