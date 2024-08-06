@@ -15,38 +15,35 @@ AI를 이용하여 여러가지 문제들을 db에 저장하고 설명, 문제�
 
 <details>
     <summary>자세히</summary>
-
 ### 0. 스플래쉬 화면
-![Screenshot_20240806_171804](https://github.com/user-attachments/assets/4193c097-2f18-4a36-ab72-8ba0333d0c91)
+<img src="https://github.com/user-attachments/assets/4193c097-2f18-4a36-ab72-8ba0333d0c91" width="200" height="400">
 
 ### 1. 로그인 화면
-![Screenshot_20240806_172401](https://github.com/user-attachments/assets/4830672f-8345-4ad2-ba1a-57263cf11cc7)
+<img src="https://github.com/user-attachments/assets/4830672f-8345-4ad2-ba1a-57263cf11cc7" width="200" height="400">
 
 ### 2. 회원가입 화면
-![Screenshot_20240806_172406](https://github.com/user-attachments/assets/abfc96b9-b4fc-4d6a-a933-2bd644ca22b6)
-
+<img src="https://github.com/user-attachments/assets/abfc96b9-b4fc-4d6a-a933-2bd644ca22b6" width="200" height="400">
 
 ### 3. Home 화면
-![Screenshot_20240806_171829](https://github.com/user-attachments/assets/977a55cb-e8c9-4b81-b39f-bc93697c6ab9)
-
+<img src="https://github.com/user-attachments/assets/977a55cb-e8c9-4b81-b39f-bc93697c6ab9" width="200" height="400">
 
 ### 4. 문제 리스트 화면
-![Screenshot_20240806_171847](https://github.com/user-attachments/assets/ae759507-9019-48bf-98a0-c666896ef017)
+<img src="https://github.com/user-attachments/assets/ae759507-9019-48bf-98a0-c666896ef017" width="200" height="400">
 
 ### 5. 설명 화면
-![Screenshot_20240806_171856](https://github.com/user-attachments/assets/84275bd3-7c02-43ac-95bb-5a100b6736c3)
+<img src="https://github.com/user-attachments/assets/84275bd3-7c02-43ac-95bb-5a100b6736c3" width="200" height="400">
 
 ### 6. 문제 화면
-![Screenshot_20240806_171925](https://github.com/user-attachments/assets/860d0d7d-1d1d-4438-aa2e-61236d484d1c)
+<img src="https://github.com/user-attachments/assets/860d0d7d-1d1d-4438-aa2e-61236d484d1c" width="200" height="400">
 
 ### 7. Profile 화면
-![Screenshot_20240806_171838](https://github.com/user-attachments/assets/f490398a-6d67-4e76-9447-14c52c03e970)
+<img src="https://github.com/user-attachments/assets/f490398a-6d67-4e76-9447-14c52c03e970" width="200" height="400">
 
 ### 8. 발자취 화면
-![Screenshot_20240806_171936](https://github.com/user-attachments/assets/40139f64-bd39-4fc2-8257-319591997309)
+<img src="https://github.com/user-attachments/assets/40139f64-bd39-4fc2-8257-319591997309" width="200" height="400">
 
 ### 9. 업적 화면
-![Screenshot_20240806_172301](https://github.com/user-attachments/assets/822ed03e-cda3-4d51-b128-4751d6570778)
+<img src="https://github.com/user-attachments/assets/822ed03e-cda3-4d51-b128-4751d6570778" width="200" height="400">
 
 </details>
 
