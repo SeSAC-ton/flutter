@@ -46,6 +46,9 @@ AI를 이용하여 여러가지 문제들을 db에 저장하고 설명, 문제�
 ### 9. 업적 화면
 <img src="https://github.com/user-attachments/assets/822ed03e-cda3-4d51-b128-4751d6570778" width="200" height="400">
 
+### 10. 챗봇 화면
+<img src="https://github.com/user-attachments/assets/41962050-e407-4217-b45b-9bfa93edd47d" width="200" height="400">
+
 </details>
 
  ## :iphone: Flutter 사용 기술
