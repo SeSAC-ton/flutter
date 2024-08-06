@@ -15,6 +15,7 @@ AI를 이용하여 여러가지 문제들을 db에 저장하고 설명, 문제�
 
 <details>
     <summary>자세히</summary>
+  
 ### 0. 스플래쉬 화면
 <img src="https://github.com/user-attachments/assets/4193c097-2f18-4a36-ab72-8ba0333d0c91" width="200" height="400">
 
