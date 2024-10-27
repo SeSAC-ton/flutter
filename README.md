@@ -13,8 +13,7 @@ AI를 이용하여 여러가지 문제들을 db에 저장하고 설명, 문제�
 
 ## :mag_right: OverView
 
-<details>
-    <summary>자세히</summary>
+## 스크린 샷
   
 ### 1. 문제 화면
 <img src="https://github.com/user-attachments/assets/860d0d7d-1d1d-4438-aa2e-61236d484d1c" width="200" height="400">
@@ -22,7 +21,6 @@ AI를 이용하여 여러가지 문제들을 db에 저장하고 설명, 문제�
 ### 2. 챗봇 화면
 <img src="https://github.com/user-attachments/assets/41962050-e407-4217-b45b-9bfa93edd47d" width="200" height="400">
 
-</details>
 
  ## :iphone: Flutter 사용 기술
 
