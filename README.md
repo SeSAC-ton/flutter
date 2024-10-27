@@ -28,17 +28,17 @@ AI를 이용하여 여러가지 문제들을 db에 저장하고 설명, 문제�
 | Name             | Description                           |
 | ---------------- | ------------------------------------- |
 | Architecture     | MVVM                                  |
-| UI               | Provider, freezed, shared_preferences |
+| UI               | Provider, Freezed, Shared_preferences |
 | DI               | Provider                              |
 | Networking       | Http                                  |    
-| API              | Firebase vertex gemini                |
+| API              | Firebase Vertex Gemini                |
 
 
 ## 🙋‍♂️ Role
 
 |  이름  | 담당 업무 |
 | ------ | ------ |
-|  이기영  | 디자인, 디자인 시스템 구축, front-end 개발, api 명세서 초안 작성 |
+|  이기영  | 디자인, 디자인 시스템 구축, Front-end 개발, Api 명세서 초안 작성 |
 |  변성훈  | 와이어 프레임 작성, 프로세스 정리, Back-End 개발, DB 설계        |
 |  남선영  | 아이디어 제공, 제안서 작성                                     |
 
